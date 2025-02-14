@@ -1,0 +1,294 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    overflow: hidden;
+    background-color: #222;
+}
+
+/* Vidéo de fond */
+.video-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+}
+
+/* Overlay sombre pour améliorer la lisibilité */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: -1;
+}
+
+/* Bannière animée avec logo */
+.banner {
+    width: 100%;
+    background: rgba(63, 59, 59, 0.9);
+    text-align: center;
+    padding: 15px 0;
+    font-size: 20px;
+    font-weight: bold;
+    position: absolute;
+    top: 0;
+    animation: fadeInDown 1s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Logo stylisé dans la bannière */
+.logo {
+    width: 40px;
+    height: 40px;
+    background-color: #363a3696;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    margin-right: 10px;
+}
+
+/* Conteneur du formulaire */
+.container {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
+    width: 350px;
+    text-align: center;
+    backdrop-filter: blur(10px);
+    animation: fadeIn 1s ease-in-out;
+    margin-top: 50px; /* Permet de séparer la carte de la fiche de contact */
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Nouvelle catégorie à gauche avec vidéo */
+.left-category {
+    position: absolute;
+    left: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+    width: 350px; /* Aligné avec la taille du formulaire */
+    height: 400px; /* Fixer la hauteur de la vidéo pour correspondre au formulaire */
+    text-align: center;
+    backdrop-filter: blur(10px);
+}
+
+/* Styles par défaut (PC) */
+body {
+font-size: 18px;
+margin: 20px;
+}
+
+/* Pour tablettes (écran ≤ 768px) */
+@media screen and (max-width: 768px) {
+body {
+font-size: 16px;
+margin: 10px;
+}
+}
+
+/* Pour mobiles (écran ≤ 480px) */
+@media screen and (max-width: 480px) {
+body {
+font-size: 5px;
+margin: 90px;
+}
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap; /* Permet de passer en colonne si pas assez d’espace */
+}
+
+.left-category video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+/* Nouvelle catégorie à droite pour la carte et le contact */
+.right-category {
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.1); /* Same as left-category */
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+    width: 350px;
+    height: 400px; /* Aligné avec la catégorie de gauche */
+    text-align: center;
+    backdrop-filter: blur(10px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* Style de la carte */
+#map {
+    width: 100%;
+    height: 60%;
+    border-radius: 10px;
+}
+
+/* Formulaire */
+input, select, button {
+    width: 100%;
+    margin-top: 15px;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+input, select {
+    background: rgb(40, 40, 40);
+    color: rgb(255, 255, 255);
+}
+
+button {
+    background-color: #000000;
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+button:hover {
+    background-color: #31383199;
+    color: white;
+}
+
+/* Fiche de contact dans la catégorie droite */
+.contact-card {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.contact-card h3 {
+    margin-bottom: 20px;
+    color: #fff;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 30px; /* Augmenter l'espace entre les icônes */
+    margin-bottom: 20px;
+}
+
+.social-icons a {
+    color: #fff;
+    font-size: 40px; /* Augmenter la taille des icônes */
+    transition: color 0.3s;
+}
+
+.social-icons a:hover {
+    color: #00aaff;
+}
+
+.contact-card a {
+    color: #fff;
+    font-size: 16px;
+    text-decoration: none;
+    display: block;
+    margin-top: 10px;
+}
+
+/* Adaptation pour mobile */
+@media (max-width: 768px) {
+    .container {
+        width: 90%;
+        margin-left: 0;
+    }
+
+    .left-category, .right-category {
+        width: 90%;
+        position: relative;
+        top: auto;
+        transform: none;
+        margin-top: 20px;
+    }
+
+    .banner {
+        font-size: 16px;
+    }
+
+    .logo {
+        width: 30px;
+        height: 30px;
+        font-size: 14px;
+    }
+
+    input, select, button {
+        font-size: 14px;
+        padding: 10px;
+    }
+}
+
+/* Adaptation pour très petit écran */
+@media (max-width: 480px) {
+    .container {
+        padding: 20px;
+    }
+
+    .left-category, .right-category {
+        width: 100%;
+        padding: 10px;
+    }
+
+    .banner {
+        font-size: 14px;
+    }
+
+    .logo {
+        width: 25px;
+        height: 25px;
+        font-size: 12px;
+    }
+
+    input, select, button {
+        font-size: 12px;
+        padding: 8px;
+    }
+}
