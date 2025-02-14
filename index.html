@@ -10,82 +10,75 @@
     
     <!-- Intégration de Leaflet pour la carte -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
-    
-    <style>
-        /* Ajoute ton CSS ici si nécessaire */
-    </style>
 </head>
-
 <body>
-
     <!-- Vidéo en arrière-plan -->
     <video class="video-background" autoplay muted loop>
         <source src="Nemzzz.mp4" type="video/mp4">
         Votre navigateur ne supporte pas les vidéos HTML5.
     </video>
-
-    <!-- Overlay sombre pour lisibilité -->
     <div class="overlay"></div>
-
-    <!-- Bannière animée avec logo -->
+    
+    <!-- Bannière avec logo -->
     <div class="banner">
-        <div class="logo">HOUSE BARBER</div> <!-- Logo stylé avec les initiales -->
+        <div class="logo">HOUSE BARBER</div>
     </div>
-
-    <!-- Nouvelle catégorie à gauche avec vidéo -->
-    <div class="left-category">
-        <video class="video-gauche" autoplay muted loop>
-            <source src="rayanecut2terminée.mp4" type="video/mp4">
-            Votre navigateur ne supporte pas les vidéos HTML5.
-        </video>
-    </div>
-
-    <!-- Nouvelle catégorie à droite pour la carte et le contact -->
-    <div class="right-category">
-        <div id="map"></div>
-
-        <!-- Fiche de contact dans la même catégorie -->
-        <div class="contact-card">
-            <h3>Contacte-moi</h3>
-            <div class="social-icons">
-                <a href="https://www.snapchat.com" target="_blank"><i class="fab fa-snapchat"></i></a>
-                <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
-            </div>
-            <a href="tel:+3374525168">📞 +33 7 45 25 16 8</a>
+    
+    <!-- Conteneur principal -->
+    <div class="main-container">
+        <!-- Nouvelle catégorie à gauche avec vidéo -->
+        <div class="left-category">
+            <video class="video-gauche" autoplay muted loop>
+                <source src="rayanecut2terminée.mp4" type="video/mp4">
+                Votre navigateur ne supporte pas les vidéos HTML5.
+            </video>
         </div>
-    </div>
-
-    <!-- Formulaire de prise de rendez-vous -->
-    <div class="container">
-        <h2>Prends Ton Rendez-vous</h2>
-        <form id="rdvForm">
-            <input type="text" id="prenom" placeholder="Prénom" required>
-            <input type="text" id="nom" placeholder="Nom" required>
-            <input type="tel" id="telephone" placeholder="Téléphone" required>
-            <input type="email" id="email" placeholder="E-mail" required>
+        
+        <!-- Formulaire de prise de rendez-vous -->
+        <div class="container">
+            <h2>Prends Ton Rendez-vous</h2>
+            <form id="rdvForm">
+                <input type="text" id="prenom" placeholder="Prénom" required>
+                <input type="text" id="nom" placeholder="Nom" required>
+                <input type="tel" id="telephone" placeholder="Téléphone" required>
+                <input type="email" id="email" placeholder="E-mail" required>
+                
+                <!-- Sélection du type de prestation -->
+                <select id="prestation" required>
+                    <option value="">Sélectionnez une prestation</option>
+                    <option value="coupe_coiffage">Coupe + Coiffage - 15€ (30 min)</option>
+                    <option value="coupe_barbe">Coupe + Barbe - 25€ (30 min)</option>
+                    <option value="contours">Contours - 5€ (10 min)</option>
+                    <option value="nattes_collees">Nattes collées - 25€ (1h)</option>
+                    <option value="barrels_twist">Barrels Twist - 40€ (2h)</option>
+                </select>
+                
+                <!-- Sélecteur de date -->
+                <input type="text" id="dateRdv" placeholder="Sélectionnez une date et une heure" required>
+                <button type="submit">Prendre Rendez-vous</button>
+            </form>
+        </div>
+        
+        <!-- Nouvelle catégorie à droite pour la carte et le contact -->
+        <div class="right-category">
+            <div id="map"></div>
             
-            <!-- Sélection du type de prestation -->
-            <select id="prestation" required>
-                <option value="">Sélectionnez une prestation</option>
-                <option value="coupe_coiffage">Coupe + Coiffage - 15€ (30 min)</option>
-                <option value="coupe_barbe">Coupe + Barbe - 25€ (30 min)</option>
-                <option value="contours">Contours - 5€ (10 min)</option>
-                <option value="nattes_collees">Nattes collées - 25€ (1h)</option>
-                <option value="barrels_twist">Barrels Twist - 40€ (2h)</option>
-            </select>
-
-            <!-- Sélecteur de date -->
-            <input type="text" id="dateRdv" placeholder="Sélectionnez une date et une heure" required>
-
-            <button type="submit">Prendre Rendez-vous</button>
-        </form>
+            <!-- Fiche de contact -->
+            <div class="contact-card">
+                <h3>Contacte-moi</h3>
+                <div class="social-icons">
+                    <a href="https://www.snapchat.com" target="_blank"><i class="fab fa-snapchat"></i></a>
+                    <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+                </div>
+                <a href="tel:+3374525168">📞 +33 7 45 25 16 8</a>
+            </div>
+        </div>
     </div>
 
     <!-- Scripts -->
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.13/flatpickr.min.js"></script>
     <script defer src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <script>
-        // Initialisation du sélecteur de date
         document.addEventListener("DOMContentLoaded", function() {
             flatpickr("#dateRdv", {
                 enableTime: true,
@@ -93,14 +86,11 @@
                 time_24hr: true,
                 minDate: "today"
             });
-
-            // Initialisation de la carte Leaflet
-            var map = L.map('map').setView([48.8566, 2.3522], 13); // Coordonnées Paris par défaut
+            var map = L.map('map').setView([48.8566, 2.3522], 13);
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 attribution: '&copy; OpenStreetMap contributors'
             }).addTo(map);
         });
     </script>
-
 </body>
 </html>
