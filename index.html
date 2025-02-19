@@ -12,7 +12,7 @@
 <body>
 
     <!-- Vidéo en arrière-plan -->
-    <video class="video-background" autoplay muted loop>
+    <video class="video-background" autoplay muted loop playsinline>
         <source src="Nemzzz.mp4" type="video/mp4">
         Votre navigateur ne supporte pas les vidéos HTML5.
     </video>
@@ -22,41 +22,22 @@
 
     <!-- Bannière animée avec logo -->
     <div class="banner">
-        <div class="logo">HOUSE BARBER</div>
+        <div class="logo">HOUSE BARBER</div> <!-- Logo stylé avec les initiales -->
     </div>
 
-    <!-- Catégorie à gauche avec vidéo -->
+    <!-- Nouvelle catégorie à gauche avec vidéo -->
     <div class="left-category">
-        <video class="video-gauche" autoplay muted loop>
+        <video class="video-gauche" autoplay muted loop playsinline>
             <source src="rayanecut2terminée.mp4" type="video/mp4">
             Votre navigateur ne supporte pas les vidéos HTML5.
         </video>
     </div>
 
-    <!-- Formulaire de prise de rendez-vous -->
-    <div class="container">
-        <h2>Prends Ton Rendez-vous</h2>
-        <form id="rdvForm">
-            <input type="text" id="prenom" placeholder="Prénom" required>
-            <input type="text" id="nom" placeholder="Nom" required>
-            <input type="tel" id="telephone" placeholder="Téléphone" required>
-            <input type="email" id="email" placeholder="E-mail" required>
-            <select id="prestation" required>
-                <option value="">Sélectionnez une prestation</option>
-                <option value="coupe_coiffage">Coupe + Coiffage - 15€ (30 min)</option>
-                <option value="coupe_barbe">Coupe + Barbe - 25€ (30 min)</option>
-                <option value="contours">Contours - 5€ (10 min)</option>
-                <option value="nattes_collees">Nattes collées - 25€ (1h)</option>
-                <option value="barrels_twist">Barrels Twist - 40€ (2h)</option>
-            </select>
-            <input type="text" id="dateRdv" placeholder="Sélectionnez une date et une heure" required>
-            <button type="submit">Prendre Rendez-vous</button>
-        </form>
-    </div>
-
-    <!-- Catégorie à droite pour la carte et le contact -->
+    <!-- Nouvelle catégorie à droite pour la carte et le contact -->
     <div class="right-category">
         <div id="map"></div>
+
+        <!-- Fiche de contact dans la même catégorie -->
         <div class="contact-card">
             <h3>Contacte moi</h3>
             <div class="social-icons">
@@ -67,11 +48,37 @@
         </div>
     </div>
 
+    <!-- Formulaire de prise de rendez-vous -->
+    <div class="container">
+        <h2>Prends Ton Rendez-vous</h2>
+        <form id="rdvForm">
+            <input type="text" id="prenom" placeholder="Prénom" required>
+            <input type="text" id="nom" placeholder="Nom" required>
+            <input type="tel" id="telephone" placeholder="Téléphone" required>
+            <input type="email" id="email" placeholder="E-mail" required>
+            
+            <!-- Ajout de la sélection du type de prestation -->
+            <select id="prestation" required>
+                <option value="">Sélectionnez une prestation</option>
+                <option value="coupe_coiffage">Coupe + Coiffage - 15€ (30 min)</option>
+                <option value="coupe_barbe">Coupe + Barbe - 25€ (30 min)</option>
+                <option value="contours">Contours - 5€ (10 min)</option>
+                <option value="nattes_collees">Nattes collées - 25€ (1h)</option>
+                <option value="barrels_twist">Barrels Twist - 40€ (2h)</option>
+            </select>
+
+            <!-- Sélecteur de date -->
+            <input type="text" id="dateRdv" placeholder="Sélectionnez une date et une heure" required>
+
+            <button type="submit">Prendre Rendez-vous</button>
+        </form>
+    </div>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.13/flatpickr.min.js"></script>
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <script>
         // Initialisation de la carte centrée sur Beauvais
-        var map = L.map('map').setView([49.433331, 2.08333], 12);
+        var map = L.map('map').setView([49.433331, 2.08333], 12); // Coordonnées de Beauvais
 
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -79,12 +86,12 @@
 
         // Initialisation de Flatpickr pour le sélecteur de date
         flatpickr("#dateRdv", {
-            locale: 'fr',
+            locale: 'fr', // Langue en français
             enableTime: true,
-            dateFormat: "Y-m-d H:i",
-            minDate: "today",
+            dateFormat: "Y-m-d H:i", // Inclut l'heure dans le format de la date
+            minDate: "today", // Limiter à la date d'aujourd'hui et au-delà
             time_24hr: true,
-            minuteIncrement: 15,
+            minuteIncrement: 15, // Plages de 15 minutes
         });
 
         document.getElementById('rdvForm').addEventListener('submit', function(event) {
@@ -92,5 +99,6 @@
             alert('Rendez-vous pris avec succès!');
         });
     </script>
+
 </body>
 </html>
