@@ -52,29 +52,8 @@
             <a href="tel:+33 74525168">📞 +33 74525168</a>
         </div>
     </div>
-
-    <!-- Formulaire de prise de rendez-vous -->
-    <div class="container">
-        <h2>Prends Ton Rendez-vous</h2>
-        <form id="rdvForm">
-            <input type="text" id="prenom" placeholder="Prénom" required>
-            <input type="text" id="nom" placeholder="Nom" required>
-            <input type="tel" id="telephone" placeholder="Téléphone" required>
-            <input type="email" id="email" placeholder="E-mail" required>
-            
-            <select id="prestation" required>
-                <option value="">Sélectionnez une prestation</option>
-                <option value="coupe_coiffage">Coupe + Coiffage - 15€ (30 min)</option>
-                <option value="coupe_barbe">Coupe + Barbe - 25€ (30 min)</option>
-                <option value="contours">Contours - 5€ (10 min)</option>
-                <option value="nattes_collees">Nattes collées - 25€ (1h)</option>
-                <option value="barrels_twist">Barrels Twist - 40€ (2h)</option>
-            </select>
-
-            <input type="text" id="dateRdv" placeholder="Sélectionnez une date et une heure" required>
-
-            <button type="submit">Prendre Rendez-vous</button>
-        </form>
+    <button type="submit">Prendre Rendez-vous</button>
+    <a href="https://calendly.com/maxime-seror-ms/barber-rdv" target="_blank"></a>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.13/flatpickr.min.js"></script>
@@ -85,20 +64,6 @@
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(map);
-
-        flatpickr("#dateRdv", {
-            locale: 'fr',
-            enableTime: true,
-            dateFormat: "Y-m-d H:i",
-            minDate: "today",
-            time_24hr: true,
-            minuteIncrement: 15,
-        });
-
-        document.getElementById('rdvForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-            alert('Rendez-vous pris avec succès!');
-        });
     </script>
 
 </body>
