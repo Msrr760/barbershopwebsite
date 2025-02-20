@@ -8,6 +8,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.13/flatpickr.min.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
     <link rel="stylesheet" href="style.css">
+    <style>
+        html, body {
+            overflow-y: auto;
+        }
+    </style>
 </head>
 <body>
 
@@ -22,7 +27,7 @@
 
     <!-- Bannière animée avec logo -->
     <div class="banner">
-        <div class="logo">HOUSE BARBER</div> <!-- Logo stylé avec les initiales -->
+        <div class="logo">HOUSE BARBER</div>
     </div>
 
     <!-- Nouvelle catégorie à gauche avec vidéo -->
@@ -37,7 +42,7 @@
     <div class="right-category">
         <div id="map"></div>
 
-        <!-- Fiche de contact dans la même catégorie -->
+        <!-- Fiche de contact -->
         <div class="contact-card">
             <h3>Contacte moi</h3>
             <div class="social-icons">
@@ -57,7 +62,6 @@
             <input type="tel" id="telephone" placeholder="Téléphone" required>
             <input type="email" id="email" placeholder="E-mail" required>
             
-            <!-- Ajout de la sélection du type de prestation -->
             <select id="prestation" required>
                 <option value="">Sélectionnez une prestation</option>
                 <option value="coupe_coiffage">Coupe + Coiffage - 15€ (30 min)</option>
@@ -67,7 +71,6 @@
                 <option value="barrels_twist">Barrels Twist - 40€ (2h)</option>
             </select>
 
-            <!-- Sélecteur de date -->
             <input type="text" id="dateRdv" placeholder="Sélectionnez une date et une heure" required>
 
             <button type="submit">Prendre Rendez-vous</button>
@@ -77,21 +80,19 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.13/flatpickr.min.js"></script>
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <script>
-        // Initialisation de la carte centrée sur Beauvais
-        var map = L.map('map').setView([49.433331, 2.08333], 12); // Coordonnées de Beauvais
+        var map = L.map('map').setView([49.433331, 2.08333], 12);
 
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(map);
 
-        // Initialisation de Flatpickr pour le sélecteur de date
         flatpickr("#dateRdv", {
-            locale: 'fr', // Langue en français
+            locale: 'fr',
             enableTime: true,
-            dateFormat: "Y-m-d H:i", // Inclut l'heure dans le format de la date
-            minDate: "today", // Limiter à la date d'aujourd'hui et au-delà
+            dateFormat: "Y-m-d H:i",
+            minDate: "today",
             time_24hr: true,
-            minuteIncrement: 15, // Plages de 15 minutes
+            minuteIncrement: 15,
         });
 
         document.getElementById('rdvForm').addEventListener('submit', function(event) {
